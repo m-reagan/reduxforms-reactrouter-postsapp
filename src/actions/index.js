@@ -9,10 +9,20 @@ export const FETCH_POST = 'fetch_post';
 export const DELETE_POST = 'delete_post';
 
 export function fetchPosts() {
-  const request = axios.get(`${API_URL}posts${API_KEY}`);
+/*   const request = axios.get(`${API_URL}posts${API_KEY}`);
   return {
     type: FETCH_POSTS,
     payload: request
+  }; */
+  // Rewriting using redux-thunk
+  return (dispatch) => {
+    axios.get(`${API_URL}posts${API_KEY}`).then((response) => {
+      dispatch({
+        type: FETCH_POSTS,
+        payload: response // we can directly send the data to the reducer too. 
+        // Sending the response as it is to avoid changing reducer.
+      });
+    })
   };
 }
 
