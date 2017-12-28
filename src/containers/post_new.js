@@ -39,7 +39,7 @@ class PostNew extends Component {
         />
         <Field
           label="Category"
-          name="category"
+          name="categories"
           component={this.renderField}
         />
         <Field
@@ -62,8 +62,8 @@ function validate(values) {
     error.title = 'Enter a title';
   }
 
-  if (!values.category) {
-    error.category = 'Enter a category';
+  if (!values.categories) {
+    error.categories = 'Enter a category';
   }
 
   if (!values.content) {

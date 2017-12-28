@@ -11,7 +11,7 @@ class PostIndex extends Component {
     this.props.fetchPosts();
   }
   renderPostList() {
-    return _.map(this.props.posts, post => <li key={post.id} className="list-group-item">{post.title}</li>);
+    return _.map(this.props.posts, post => <Link to={`posts/${post.id}`} key={post.id}> <li className="list-group-item">{post.title}</li></Link>);
   }
   render() {
     return (
