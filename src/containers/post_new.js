@@ -30,6 +30,7 @@ class PostNew extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    console.log(this.props.initialValues);
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field
@@ -73,8 +74,19 @@ function validate(values) {
   return error;
 }
 
-export default reduxForm({
+const postNewForm = reduxForm({
   form: 'PostNewForm',
+  enableReinitialize: true,
   validate
-})(connect(null, { createPost })(PostNew));
+})(PostNew);
+
+export default (connect((state) => {
+  return {
+    initialValues: {
+      title: 'Any title',
+      categories: 'Good category',
+      content: 'Type in your content'
+    }
+  };
+}, { createPost })(postNewForm));
 
